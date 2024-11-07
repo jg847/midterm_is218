@@ -1,4 +1,3 @@
-""" tests/test_calculator.py """
 import sys
 from io import StringIO
 from app.calculator import calculator
@@ -53,11 +52,13 @@ def test_division(monkeypatch):
     assert "Result: 5.0" in output
 
 def test_modulus(monkeypatch):
+    """Test modulus operation in REPL."""
     inputs = ["modulus 10 5", "exit"]
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Result: 0.0" in output
 
 def test_power(monkeypatch):
+    """Test power operation in REPL."""
     inputs = ["power 4 2", "exit"]
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Result: 16.0" in output
