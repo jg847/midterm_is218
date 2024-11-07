@@ -52,11 +52,16 @@ def test_division(monkeypatch):
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Result: 5.0" in output
 
+def test_modulus(monkeypatch):
+    inputs = ["modulus 10 5", "exit"]
+    output = run_calculator_with_input(monkeypatch, inputs)
+    assert "Result: 0.0" in output
+
 
 # Negative Tests
 def test_invalid_operation(monkeypatch):
     """Test invalid operation in REPL."""
-    inputs = ["modulus 5 3", "exit"]
+    inputs = ["sigma 5 3", "exit"]
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Unknown operation" in output
 
