@@ -78,3 +78,9 @@ def test_division_by_zero(monkeypatch):
     inputs = ["divide 5 0", "exit"]
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Cannot divide by zero." in output
+
+def test_modulus_by_zero(monkeypatch):
+    """Test modulus by zero in REPL."""
+    inputs = ["modulus 5 0","exit"]
+    output = run_calculator_with_input(monkeypatch, inputs)
+    assert "Divisor cannot be zero." in output
