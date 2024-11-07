@@ -1,45 +1,28 @@
-""" 
-This file is the "app/calculator.py" file. It contains a simple calculator that can add, subtract, multiply, 
-and divide numbers based on what the user types.
-"""
+from app.operations import addition, subtraction, multiplication, division, modulus, power
 
-# First, we need to get some functions that can actually do the math for us. These functions (addition, 
-# subtraction, multiplication, and division) are in another file called "operations.py" in the "app" folder.
-# This is like opening a toolbox and pulling out the tools we need to do our math.
-from app.operations import addition, subtraction, multiplication, division, modulus
-
-# Now we're going to create the main function called "calculator". 
-# A function is just a block of code that does something when you call it, kind of like a recipe that tells the 
-# computer what to do.
 def calculator():
-    """Basic REPL calculator that performs addition, subtraction, multiplication, and division."""
+    """Basic REPL calculator that performs addition, subtraction, multiplication, division, modulus, and powers."""
     
-    # First, we print a message to welcome the user to the calculator.
+    # Welcome Message
     print("Welcome to the calculator REPL! Type 'exit' to quit")
     
-    # This is the part where the calculator keeps running. The 'while True' means we are going to keep 
-    # doing something (in this case, asking the user for input) until we tell it to stop.
-    while True:
-        # Now we ask the user to type something, like "add 5 3". 
-        # This will get the operation (like "add") and two numbers from the user.
-        user_input = input("Enter an operation (add, subtract, multiply, divide) and two numbers, or 'exit' to quit: ")
-
-        # This part checks if the user typed "exit". If they did, we print a message and stop the calculator.
-        if user_input.lower() == "exit":
+    while True:    # While the calulator is running...
+        # User inputs operation and two numbers
+        user_input = input("Enter an operation (add, subtract, multiply, divide, modulus, power) and two numbers, or 'exit' to quit: ")
+        if user_input.lower() == "exit": # If user inputs 'exit'...
             print("Exiting calculator...")
-            break  # This "break" command tells the program to stop running the loop and exit.
+            break  # Stops running the loop and exits the calculator function
 
         try:
-            # Now we split the input into three parts: the operation (add, subtract, etc.) and the two numbers.
+            # Splits input into three parts: operation used and two numbers.
             operation, num1, num2 = user_input.split()
-            # We have to make sure the numbers are actually numbers, so we convert them to floats.
-            num1, num2 = float(num1), float(num2)
+            num1, num2 = float(num1), float(num2) # Convert number to floats
         except ValueError:
-            # If the user doesn't type something correctly, like typing letters where numbers should be, we show an error.
+            # Shows error if user types in incorrect inputs: i.e letters for numbers
             print("Invalid input. Please follow the format: <operation> <num1> <num2>")
-            continue  # This "continue" means: try again by going back to the top of the loop.
+            continue  # Try again by going back to the top of the loop.
 
-        # Now we check what operation the user asked for and call the right function (addition, subtraction, etc.).
+        # Check what operation user asked for and call the right function
         if operation == "add":
             result = addition(num1, num2)  # We call the addition function to add the two numbers.
         elif operation == "subtract":
@@ -50,33 +33,23 @@ def calculator():
             try:
                 result = division(num1, num2)  # We call the division function to divide the two numbers.
             except ValueError as e:
-                # This part handles the case where someone tries to divide by zero, which we can't do.
-                # The division function will throw an error if someone tries dividing by zero, and we catch that error here.
+                # Handles the case where someone tries to divide by zero
+                # Sends error message when diving by zero is attempted
                 print(e)  # Show the error message.
-                continue  # Go back to the top of the loop and try again.
+                continue 
         elif operation == "modulus":
             try:
-                result = modulus(num1, num2)
-            except ValueError as e:
+                result = modulus(num1, num2) # We call the modulus function to find the remainder of a division function
+            except ValueError as e: # Handles case when diving by zero again
                 print(e)
                 continue
+        elif operation == "power": 
+            result = power(num1,num2) # Calls the power function to raise num1 to the power of num2
+
         else:
-            # If the user types an operation we don't understand, we show them a message.
-            print(f"Unknown operation '{operation}'. Supported operations: add, subtract, multiply, divide, modulus.")
+            # If the user types an unregistered operation, the following message will be shown.
+            print(f"Unknown operation '{operation}'. Supported operations: add, subtract, multiply, divide, modulus, power.")
             continue  # Go back to the top of the loop and try again.
 
-        # Finally, we print the result of the operation (for example, "Result: 8").
+        #Print the result of the operation.
         print(f"Result: {result}")
-
-
-# Explanation of __init__.py:
-# In Python, a file named "__init__.py" is really important. It tells Python that the folder it's in (in this case, "calculator") 
-# is a special kind of folder called a "package". Think of a package like a folder that contains related code, like a toolbox with
-# different tools inside.
-# 
-# Without the "__init__.py" file, Python won't know that the folder can be used to group code together. It’s like a flag that says,
-# "Hey Python, this folder can be used to import code!"
-# 
-# For example, if we put the "__init__.py" file in the "calculator" folder, we can import anything inside it by saying something like:
-# "from app.calculator import calculator". The "__init__.py" file can be empty, or it can have code in it, but its main job is just 
-# to make the folder a package.
