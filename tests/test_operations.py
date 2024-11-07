@@ -1,5 +1,5 @@
 import pytest
-from app.operations import addition, subtraction, multiplication, division, modulus
+from app.operations import addition, subtraction, multiplication, division, modulus, power
 
 def test_addition():
     """Test Addition"""
@@ -30,3 +30,7 @@ def test_modulus_zero():
     """Test Modulus When Divisor is Zero"""
     with pytest.raises(ValueError, match = "Divisor cannot be zero."):
         modulus(1,0)
+
+def test_power():
+    """Test Power"""
+    assert power(1,1) == 1
