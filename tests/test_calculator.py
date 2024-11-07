@@ -57,6 +57,11 @@ def test_modulus(monkeypatch):
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Result: 0.0" in output
 
+def test_power(monkeypatch):
+    inputs = ["power 4 2", "exit"]
+    output = run_calculator_with_input(monkeypatch, inputs)
+    assert "Result: 16.0" in output
+
 
 # Negative Tests
 def test_invalid_operation(monkeypatch):
@@ -81,6 +86,6 @@ def test_division_by_zero(monkeypatch):
 
 def test_modulus_by_zero(monkeypatch):
     """Test modulus by zero in REPL."""
-    inputs = ["modulus 5 0","exit"]
+    inputs = ["modulus 5 0", "exit"]
     output = run_calculator_with_input(monkeypatch, inputs)
     assert "Divisor cannot be zero." in output
