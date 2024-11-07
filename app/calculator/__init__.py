@@ -6,7 +6,7 @@ and divide numbers based on what the user types.
 # First, we need to get some functions that can actually do the math for us. These functions (addition, 
 # subtraction, multiplication, and division) are in another file called "operations.py" in the "app" folder.
 # This is like opening a toolbox and pulling out the tools we need to do our math.
-from app.operations import addition, subtraction, multiplication, division
+from app.operations import addition, subtraction, multiplication, division, modulus
 
 # Now we're going to create the main function called "calculator". 
 # A function is just a block of code that does something when you call it, kind of like a recipe that tells the 
@@ -54,9 +54,15 @@ def calculator():
                 # The division function will throw an error if someone tries dividing by zero, and we catch that error here.
                 print(e)  # Show the error message.
                 continue  # Go back to the top of the loop and try again.
+        elif operation == "modulus":
+            try:
+                result = modulus(num1, num2)
+            except ValueError as e:
+                print(e)
+                continue
         else:
             # If the user types an operation we don't understand, we show them a message.
-            print(f"Unknown operation '{operation}'. Supported operations: add, subtract, multiply, divide.")
+            print(f"Unknown operation '{operation}'. Supported operations: add, subtract, multiply, divide, modulus.")
             continue  # Go back to the top of the loop and try again.
 
         # Finally, we print the result of the operation (for example, "Result: 8").
