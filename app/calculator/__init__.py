@@ -11,13 +11,14 @@ def calculator():
     # Welcome Message
     logger.info(f"Welcome to the calculator REPL! Type 'exit' to quit")
     
-    while True:    # While the calulator is running...
-        # User inputs operation and two numbers
+    while True:    # While calulator is running
+        # Asks user for input
         user_input = input(
                 "Enter an operation (add, subtract, multiply, divide, modulus, power) and two numbers,"
                 "or 'history' to manage history, or 'exit' to quit: ")
        
-        if user_input.lower() == "exit": # If user inputs 'exit'...
+       # Exiting calculator
+        if user_input.lower() == "exit":
             logger.info("Exiting calculator...")
             break  # Stops running the loop and exits the calculator function
         
@@ -37,30 +38,29 @@ def calculator():
 
         # Check what operation user asked for and call the right function
         if operation == "add":
-            result = addition(num1, num2)  # We call the addition function to add the two numbers.
+            result = addition(num1, num2) 
             logger.info(f"Performed addition: {num1} + {num2} = {result}")
             history_manager.show_history()
         elif operation == "subtract":
-            result = subtraction(num1, num2)  # We call the subtraction function to subtract the two numbers.
+            result = subtraction(num1, num2) 
             logger.info(f"Performed subtraction: {num1} - {num2} = {result}")
             history_manager.show_history()
         elif operation == "multiply":
-            result = multiplication(num1, num2)  # We call the multiplication function to multiply the two numbers.
+            result = multiplication(num1, num2) 
             logger.info(f"Performed multiplication: {num1} x {num2} = {result}")
             history_manager.show_history()
         elif operation == "divide":
             try:
-                result = division(num1, num2)  # We call the division function to divide the two numbers.
+                result = division(num1, num2) 
                 logger.info(f"Performed division: {num1} / {num2} = {result}")
                 history_manager.show_history()
+            # Handling error when user attempts to divide by zero
             except ValueError as e:
-                # Handles the case where someone tries to divide by zero
-                # Sends error message when diving by zero is attempted
                 logger.error(e)
                 continue 
         elif operation == "modulus":
             try:
-                result = modulus(num1, num2) # We call the modulus function to find the remainder of a division function
+                result = modulus(num1, num2) 
                 logger.info(f"Performed modulo: {num1} % {num2} = {result}")
                 history_manager.show_history()
             except ValueError as e: # Handles case when diving by zero again
@@ -70,7 +70,7 @@ def calculator():
             result = power(num1,num2) # Calls the power function to raise num1 to the power of num2
             logger.info(f"Performed power: {num1} ^ {num2} = {result}")
             history_manager.show_history()
-            
+
         else:
             # If the user types an unregistered operation, the following message will be shown.
             logger.warning(f"Unknown operation '{operation}'.")
@@ -83,7 +83,9 @@ def calculator():
 
 # Manage calculation history
 def manage_history():
-    while True:
+    while True: # while history command is running
+        # Prints commands available to be used for the user.
+        # Asks user to input a number 1-6, each number is tied to a function
         print("\nHistory Management Options:")
         print("1. View history")
         print("2. Save history")
@@ -93,6 +95,7 @@ def manage_history():
         print("6. Back to calculator")
         choice = input("Choose an option (1-6): ")
 
+        # History function called upon user input
         if choice == "1":
             history_manager.show_history()
         elif choice == "2":
@@ -105,5 +108,6 @@ def manage_history():
             history_manager.delete_history_file()
         elif choice == "6":
             break
+        # If user used an invalid option, an error line is printed
         else:
             print("Invalid choice. Please try again.")

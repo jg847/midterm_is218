@@ -1,6 +1,7 @@
 import logging
 from app.config import LOG_LEVEL, LOG_FORMAT
 
+# Setting up logging
 def setup_logging():
     logging.basicConfig(
         level=getattr(logging, LOG_LEVEL.upper(), logging.INFO),
