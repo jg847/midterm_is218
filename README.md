@@ -6,7 +6,7 @@ The application executes the following operations: Add, Subtract, Multiply, Divi
 
 ## Logging
 The application logs operations used from user input. In this application, three levels of logging was used: INFO, WARNING, ERROR.
-You can check how I used logging under the calculation function in my Calculator function [here](app/calculator/__init__.py)
+You can check how I used logging under the calculation function [here](app/calculator/__init__.py)
 You can also check my logging configurations [here](app/logging_config.py)
 ### INFO 
 * used to log information from user input
