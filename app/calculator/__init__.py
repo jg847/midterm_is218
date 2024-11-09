@@ -15,7 +15,7 @@ def calculator():
         # Asks user for input
         user_input = input(
                 "Enter an operation (add, subtract, multiply, divide, modulus, power) and two numbers,"
-                "or 'history' to manage history, or 'exit' to quit: ")
+                " or 'history' to manage history, or 'exit' to quit: ")
        
        # Exiting calculator
         if user_input.lower() == "exit":
