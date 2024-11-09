@@ -32,3 +32,6 @@ Check LBYL usage [here](app/operations/__init__.py)
 ## EAFP (Easier to Ask for Forgiveness than Permission)
 This approach is demonstrated by using try/except handling to avoid errors, ex: dividing by zero.
 Check EAFP usage [here](app/calculator/__init__.py))
+
+### Link to Video
+[Short Video Showing Calulator](https://drive.google.com/file/d/1VxZjv9EQcB39yBLYAEy9KHfRaqWNiXGr/view?usp=sharing)
